@@ -6,7 +6,7 @@ import pe.edu.upc.easysneaker.features.home.infrastructure.local.ProductEntity
  * Assembler responsible for mapping remote network DTOs ([ProductDto]) 
  * into local database entities [ProductEntity].
  */
-object ProductRemoteAssembler {
+object ProductDtoAssembler {
 
     /**
      * Converts a network [ProductDto] into a local [ProductEntity].
@@ -25,7 +25,7 @@ object ProductRemoteAssembler {
     /**
      * Converts a list of network [ProductDto] objects into a list of [ProductEntity].
      */
-    fun toEntityList(dtos: List): List {
+    fun toEntityList(dtos: List<ProductDto>): List<ProductEntity> {
         return dtos.map { toEntity(it) }
     }
 }

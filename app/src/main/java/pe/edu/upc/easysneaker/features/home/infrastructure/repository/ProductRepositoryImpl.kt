@@ -3,8 +3,8 @@ package pe.edu.upc.easysneaker.features.home.infrastructure.repository
 import pe.edu.upc.easysneaker.features.home.domain.Product
 import pe.edu.upc.easysneaker.features.home.domain.ProductRepository
 import pe.edu.upc.easysneaker.features.home.infrastructure.local.ProductDao
-import pe.edu.upc.easysneaker.features.home.infrastructure.local.ProductEntity
 import pe.edu.upc.easysneaker.features.home.infrastructure.local.ProductEntityAssembler
+import pe.edu.upc.easysneaker.features.home.infrastructure.remote.ProductDtoAssembler
 import pe.edu.upc.easysneaker.features.home.infrastructure.remote.ProductService
 import javax.inject.Inject
 
@@ -18,7 +18,7 @@ class ProductRepositoryImpl @Inject constructor(
             val response = service.getProducts()
             if (response.isSuccessful) {
                 response.body()?.let { productsResponseDto ->
-                    val entities = ProductRemoteAssembler.toEntityList(productsResponseDto.products)
+                    val entities = ProductDtoAssembler.toEntityList(productsResponseDto.products)
                     dao.insertProducts(entities)
                 }
             }
@@ -37,7 +37,7 @@ class ProductRepositoryImpl @Inject constructor(
 
             if (response.isSuccessful) {
                 response.body()?.let { dto ->
-                    val entity = ProductRemoteAssembler.toEntity(dto)
+                    val entity = ProductDtoAssembler.toEntity(dto)
                     dao.insertProduct(entity)
                 }
             }

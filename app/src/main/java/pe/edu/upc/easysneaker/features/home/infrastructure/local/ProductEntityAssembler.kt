@@ -29,7 +29,7 @@ object ProductEntityAssembler {
     /**
      * Converts a list of [ProductEntity] into a list of domain [Product].
      */
-    fun toDomainList(entities: List): List {
+    fun toDomainList(entities: List<ProductEntity>): List<Product> {
         return entities.mapNotNull { toDomainFromEntity(it) }
     }
 }
